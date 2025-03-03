@@ -6,13 +6,13 @@ const nextConfig = {
   },
   images: {
     unoptimized: true,
-    domains: ['graph.facebook.com', 'platform-lookaside.fbsbx.com'],
+    domains: ['graph.facebook.com', 'platform-lookaside.fbsbx.com', 'lh3.googleusercontent.com'],
   },
   experimental: {
     serverActions: true,
   },
   // Explicitly enable SWC and disable Babel
-  swcMinify: false,
+  swcMinify: true,
   compiler: {
     // Enables the styled-components SWC transform
     styledComponents: true
