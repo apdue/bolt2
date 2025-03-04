@@ -40,10 +40,7 @@ export function EmailAuthForm() {
           email: data.email,
           password: data.password,
           options: {
-            emailRedirectTo: `${window.location.origin}/auth/callback`,
-            data: {
-              email_confirm: true,
-            }
+            emailRedirectTo: 'https://bolt2-qmvt.vercel.app/auth/callback',
           },
         });
 
@@ -57,7 +54,6 @@ export function EmailAuthForm() {
             'Please check your email to confirm your account. Check your spam folder if you don\'t see it.',
             { duration: 6000 }
           );
-          // Clear the form
           form.reset();
         }
       } else {
@@ -80,6 +76,7 @@ export function EmailAuthForm() {
         } else {
           toast.success('Signed in successfully');
           router.refresh();
+          router.push('/');
         }
       }
     } catch (error: any) {

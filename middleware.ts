@@ -2,6 +2,8 @@ import { createServerClient } from '@supabase/ssr';
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
 
+const productionUrl = 'https://bolt2-qmvt.vercel.app';
+
 export async function middleware(request: NextRequest) {
   // Create a response object to modify
   let response = NextResponse.next({
@@ -67,14 +69,12 @@ export async function middleware(request: NextRequest) {
   // Handle authentication
   if (!session && !isPublicRoute) {
     // Redirect to login if accessing protected route without session
-    const redirectUrl = new URL('/auth', request.url);
-    return NextResponse.redirect(redirectUrl);
+    return NextResponse.redirect(new URL('/auth', productionUrl));
   }
 
   if (session && request.nextUrl.pathname === '/auth') {
     // Redirect to home if accessing auth page with session
-    const redirectUrl = new URL('/', request.url);
-    return NextResponse.redirect(redirectUrl);
+    return NextResponse.redirect(new URL('/', productionUrl));
   }
 
   return response;
