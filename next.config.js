@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  swcMinify: true,
+  swcMinify: false,
   reactStrictMode: true,
   images: {
     domains: ['graph.facebook.com', 'platform-lookaside.fbsbx.com', 'lh3.googleusercontent.com'],
-    unoptimized: false,
+    unoptimized: true,
   },
   experimental: {
     serverActions: true,
@@ -19,6 +19,14 @@ const nextConfig = {
     // Warning: This allows production builds to successfully complete even if
     // your project has ESLint errors.
     ignoreDuringBuilds: true,
+  },
+  webpack: (config) => {
+    // Disable minification in webpack as well
+    if (config.optimization && config.optimization.minimizer) {
+      config.optimization.minimizer = [];
+    }
+    
+    return config;
   },
 }
 
