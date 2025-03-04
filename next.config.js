@@ -1,33 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  swcMinify: true,
   reactStrictMode: true,
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
   images: {
-    unoptimized: true,
     domains: ['graph.facebook.com', 'platform-lookaside.fbsbx.com', 'lh3.googleusercontent.com'],
+    unoptimized: false,
   },
   experimental: {
     serverActions: true,
   },
-  // Explicitly enable SWC and disable Babel
-  swcMinify: true,
   compiler: {
-    // Enables the styled-components SWC transform
-    styledComponents: true
+    styledComponents: true,
   },
-  webpack: (config) => {
-    // Disable minification in webpack as well
-    if (config.optimization && config.optimization.minimizer) {
-      config.optimization.minimizer = [];
-    }
-    
-    config.resolve.alias = {
-      ...config.resolve.alias,
-      '@': '.',
-    };
-    return config;
+  env: {
+    NEXT_PUBLIC_SITE_URL: 'https://bolt2-qmvt.vercel.app',
   },
 }
 
