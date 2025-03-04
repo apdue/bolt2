@@ -75,8 +75,7 @@ export function EmailAuthForm() {
           }
         } else {
           toast.success('Signed in successfully');
-          router.refresh();
-          router.push('/');
+          window.location.href = 'https://bolt2-qmvt.vercel.app/';
         }
       }
     } catch (error: any) {

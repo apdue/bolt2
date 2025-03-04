@@ -27,10 +27,8 @@ export async function GET(request: Request) {
     );
     
     await supabase.auth.exchangeCodeForSession(code);
-
-    return NextResponse.redirect('https://bolt2-qmvt.vercel.app');
   }
 
-  // Return the user to the main page if something goes wrong
-  return NextResponse.redirect('https://bolt2-qmvt.vercel.app');
+  // Always redirect to the home page
+  return NextResponse.redirect('https://bolt2-qmvt.vercel.app/');
 } 
